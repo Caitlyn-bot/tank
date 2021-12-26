@@ -1,6 +1,8 @@
 package com.zzw.tank;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -29,6 +31,8 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
+        //添加键盘的监听事件
+        this.addKeyListener(new MyKeyListener());
     }
 
     /**
@@ -39,7 +43,31 @@ public class TankFrame extends Frame {
     public void paint(Graphics g){
         g.fillRect(x,y,50,50);
         x += 10;
-        y += 10;
+//        y += 10;
+    }
+
+    /**
+     * 处理键盘事件监听
+     */
+    class MyKeyListener extends KeyAdapter{
+        /**
+         * 一个键被按下时调用
+         * @param e
+         */
+        @Override
+        public void keyPressed(KeyEvent e) {
+//            System.out.println("key pressed");
+            x += 200;
+        }
+
+        /**
+         * 一个键被重开时调用
+         * @param e
+         */
+        @Override
+        public void keyReleased(KeyEvent e) {
+//            System.out.println("key released");
+        }
     }
 
 }
