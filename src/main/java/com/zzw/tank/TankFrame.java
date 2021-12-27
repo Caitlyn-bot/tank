@@ -42,7 +42,7 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g){
         g.fillRect(x,y,50,50);
-        x += 10;
+//        x += 10;
 //        y += 10;
     }
 
@@ -51,13 +51,37 @@ public class TankFrame extends Frame {
      */
     class MyKeyListener extends KeyAdapter{
         /**
+         * 通过四个布尔值确定坦克的上下左右方向，而不是直接移动坦克，实现斜着走
+         */
+        boolean bL = false;
+        boolean bR = false;
+        boolean bU = false;
+        boolean bD = false;
+
+        /**
          * 一个键被按下时调用
          * @param e
          */
         @Override
         public void keyPressed(KeyEvent e) {
-//            System.out.println("key pressed");
-            x += 200;
+            int key = e.getKeyCode();
+            switch (key){
+                case KeyEvent.VK_LEFT:
+                    bL = true;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    bR = true;
+                    break;
+                case KeyEvent.VK_UP:
+                    bU = true;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    bD = true;
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         /**
@@ -66,7 +90,23 @@ public class TankFrame extends Frame {
          */
         @Override
         public void keyReleased(KeyEvent e) {
-//            System.out.println("key released");
+            int key = e.getKeyCode();
+            switch (key){
+                case KeyEvent.VK_LEFT:
+                    bL = false;
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    bR = false;
+                    break;
+                case KeyEvent.VK_UP:
+                    bU = false;
+                    break;
+                case KeyEvent.VK_DOWN:
+                    bD = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
