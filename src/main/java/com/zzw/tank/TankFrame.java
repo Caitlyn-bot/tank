@@ -15,6 +15,10 @@ public class TankFrame extends Frame {
      * 定义主战坦克
      */
     Tank myTank = new Tank(200,200,Dir.DOWN);
+    /**
+     * 定义子弹
+     */
+    Bullet bullet = new Bullet(220,220,Dir.DOWN);
 
     public TankFrame(){
         //设置窗口初始大小
@@ -42,7 +46,10 @@ public class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics g){
+        //绘制坦克
         myTank.paint(g);
+        //绘制子弹
+        bullet.paint(g);
     }
 
     /**

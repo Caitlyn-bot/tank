@@ -41,14 +41,13 @@ public class Tank {
          * 移动坦克
          */
         move();
-
     }
 
     private void move(){
         if (!moving){
             return;
         }
-        switch (dir){
+        switch (dir) {
             case LEFT:
                 x -= SPEED;
                 break;
