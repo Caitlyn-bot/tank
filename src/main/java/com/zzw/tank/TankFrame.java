@@ -121,17 +121,24 @@ public class TankFrame extends Frame {
          * 设置主战坦克的方向
          */
         private void setMainTankDir(){
-            if (bL) {
-                myTank.setDir(Dir.LEFT);
-            }
-            if (bU) {
-                myTank.setDir(Dir.UP);
-            }
-            if (bR) {
-                myTank.setDir(Dir.RIGHT);
-            }
-            if (bD) {
-                myTank.setDir(Dir.DOWN);
+            //设置坦克状态为移动
+            myTank.setMoving(true);
+            //设置坦克的移动方向
+            if (!bL && !bU && !bR && !bD) {
+                myTank.setMoving(false);
+            }else {
+                if (bL) {
+                    myTank.setDir(Dir.LEFT);
+                }
+                if (bU) {
+                    myTank.setDir(Dir.UP);
+                }
+                if (bR) {
+                    myTank.setDir(Dir.RIGHT);
+                }
+                if (bD) {
+                    myTank.setDir(Dir.DOWN);
+                }
             }
         }
 
