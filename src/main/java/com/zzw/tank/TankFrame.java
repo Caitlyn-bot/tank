@@ -11,17 +11,10 @@ import java.awt.event.WindowEvent;
  * @version v1.0
  */
 public class TankFrame extends Frame {
-
-    int x = 200;
-    int y = 200;
     /**
-     * 默认初始主战坦克的方向是向下
+     * 定义主战坦克
      */
-    Dir dir = Dir.DOWN;
-    /**
-     * SPEED代表坦克的移动速度
-     */
-    private static final int SPEED = 10;
+    Tank myTank = new Tank(200,200,Dir.DOWN);
 
     public TankFrame(){
         //设置窗口初始大小
@@ -49,25 +42,7 @@ public class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics g){
-        g.fillRect(x,y,50,50);
-
-        switch (dir){
-            case LEFT:
-                x -= SPEED;
-                break;
-            case RIGHT:
-                x += SPEED;
-                break;
-            case UP:
-                y -= SPEED;
-                break;
-            case DOWN:
-                y += SPEED;
-                break;
-            default:
-                break;
-
-        }
+        myTank.paint(g);
     }
 
     /**
@@ -147,16 +122,16 @@ public class TankFrame extends Frame {
          */
         private void setMainTankDir(){
             if (bL) {
-                dir = Dir.LEFT;
+                myTank.setDir(Dir.LEFT);
             }
             if (bU) {
-                dir = Dir.UP;
+                myTank.setDir(Dir.UP);
             }
             if (bR) {
-                dir = Dir.RIGHT;
+                myTank.setDir(Dir.RIGHT);
             }
             if (bD) {
-                dir = Dir.DOWN;
+                myTank.setDir(Dir.DOWN);
             }
         }
 
