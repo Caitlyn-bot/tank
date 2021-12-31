@@ -14,6 +14,14 @@ public class TankFrame extends Frame {
 
     int x = 200;
     int y = 200;
+    /**
+     * 默认初始主战坦克的方向是向下
+     */
+    Dir dir = Dir.DOWN;
+    /**
+     * SPEED代表坦克的移动速度
+     */
+    private static final int SPEED = 10;
 
     public TankFrame(){
         //设置窗口初始大小
@@ -42,8 +50,24 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g){
         g.fillRect(x,y,50,50);
-//        x += 10;
-//        y += 10;
+
+        switch (dir){
+            case LEFT:
+                x -= SPEED;
+                break;
+            case RIGHT:
+                x += SPEED;
+                break;
+            case UP:
+                y -= SPEED;
+                break;
+            case DOWN:
+                y += SPEED;
+                break;
+            default:
+                break;
+
+        }
     }
 
     /**
@@ -81,8 +105,13 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            /**
+             * 设置坦克方向
+             */
+            setMainTankDir();
 
         }
+
 
         /**
          * 一个键被重开时调用
@@ -107,7 +136,30 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            /**
+             * 设置坦克方向
+             */
+            setMainTankDir();
         }
+
+        /**
+         * 设置主战坦克的方向
+         */
+        private void setMainTankDir(){
+            if (bL) {
+                dir = Dir.LEFT;
+            }
+            if (bU) {
+                dir = Dir.UP;
+            }
+            if (bR) {
+                dir = Dir.RIGHT;
+            }
+            if (bD) {
+                dir = Dir.DOWN;
+            }
+        }
+
     }
 
 }
