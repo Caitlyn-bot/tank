@@ -14,7 +14,7 @@ public class TankFrame extends Frame {
     /**
      * 定义主战坦克
      */
-    Tank myTank = new Tank(200,200,Dir.DOWN);
+    Tank myTank = new Tank(200,200,Dir.DOWN,this);
     /**
      * 定义子弹
      */
@@ -138,6 +138,9 @@ public class TankFrame extends Frame {
                     break;
                 case KeyEvent.VK_DOWN:
                     bD = false;
+                    break;
+                case KeyEvent.VK_CONTROL:
+                    myTank.fire();
                     break;
                 default:
                     break;
