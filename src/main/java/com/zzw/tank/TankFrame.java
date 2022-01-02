@@ -5,6 +5,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 张志伟
@@ -18,7 +20,7 @@ public class TankFrame extends Frame {
     /**
      * 定义子弹
      */
-    Bullet bullet = new Bullet(220,220,Dir.DOWN);
+    List<Bullet> bullets = new ArrayList<>();
     /**
      * 游戏画面的宽度
      */
@@ -70,10 +72,16 @@ public class TankFrame extends Frame {
      */
     @Override
     public void paint(Graphics g){
+        Color c = g.getColor();
+        g.setColor(Color.WHITE);
+        g.drawString("子弹的数量：" + bullets.size(),10,60);
+        g.setColor(c);
         //绘制坦克
         myTank.paint(g);
         //绘制子弹
-        bullet.paint(g);
+        for (int i = 0; i < bullets.size();i++) {
+            bullets.get(i).paint(g);
+        }
     }
 
     /**

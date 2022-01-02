@@ -1,6 +1,8 @@
 package com.zzw.tank;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 坦克
@@ -30,6 +32,7 @@ public class Tank {
     private static final int SPEED = 10;
 
     private TankFrame tf;
+
 
     public Tank(int x, int y, Dir dir, TankFrame tf){
         this.x = x;
@@ -76,7 +79,8 @@ public class Tank {
      * 发射子弹
      */
     public void fire(){
-        tf.bullet = new Bullet(this.x,this.y,this.dir);
+        Bullet bullet = new Bullet(this.x,this.y,this.dir,tf);
+        tf.bullets.add(bullet);
     }
 
     public int getX() {
