@@ -15,11 +15,11 @@ public class Bullet {
     /**
      * 子弹的宽度
      */
-    private static final int WIDTH = 10;
+    public static final int WIDTH = ResourceMgr.bulletD.getWidth();
     /**
      * 子弹的高度
      */
-    private static final int HEIGHT = 10;
+    public static final int HEIGHT = ResourceMgr.bulletD.getHeight();
     /**
      * x代表子弹所处的横坐标
      */
@@ -37,10 +37,16 @@ public class Bullet {
 
     TankFrame tf = null;
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf){
+    /**
+     * 子弹的类型
+     */
+    private Group group = Group.BAD;
+
+    public Bullet(int x, int y, Dir dir,Group group, TankFrame tf){
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tf = tf;
     }
 
@@ -94,4 +100,28 @@ public class Bullet {
 
     }
 
+    public void collideWith(Tank tank) {
+        if (this.group == tank.getGroup()){
+            return;
+        }
+        //TODO:用一个rect来记录子弹的位置
+        Rectangle rect1 = new Rectangle(this.x,this.y,WIDTH,HEIGHT);
+        Rectangle rect2 = new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
+        if (rect1.intersects(rect2)){
+            tank.die();
+            this.die();
+        }
+    }
+
+    private void die() {
+        living = false;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 }

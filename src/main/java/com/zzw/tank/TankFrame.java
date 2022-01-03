@@ -16,11 +16,15 @@ public class TankFrame extends Frame {
     /**
      * 定义主战坦克
      */
-    Tank myTank = new Tank(200,200,Dir.DOWN,this);
+    Tank myTank = new Tank(200,400,Dir.DOWN,Group.GOOD,this);
     /**
      * 定义子弹
      */
     List<Bullet> bullets = new ArrayList<>();
+    /**
+     * 定义敌方坦克
+     */
+    List<Tank> enemies = new ArrayList<>();
     /**
      * 游戏画面的宽度
      */
@@ -75,12 +79,22 @@ public class TankFrame extends Frame {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         g.drawString("子弹的数量：" + bullets.size(),10,60);
+        g.drawString("敌人的数量：" + enemies.size(),10,80);
         g.setColor(c);
         //绘制坦克
         myTank.paint(g);
         //绘制子弹
         for (int i = 0; i < bullets.size();i++) {
             bullets.get(i).paint(g);
+        }
+        //绘制敌方坦克
+        for (int i = 0; i < enemies.size();i++) {
+            enemies.get(i).paint(g);
+        }
+        for (int i = 0; i < bullets.size();i++) {
+            for (int j = 0; j < enemies.size();j++) {
+                bullets.get(i).collideWith(enemies.get(j));
+            }
         }
     }
 
