@@ -59,7 +59,6 @@ public class Tank {
             default:
                 g.drawImage(ResourceMgr.tankD,x,y,null);
                 break;
-
         }
         /**
          * 移动坦克
