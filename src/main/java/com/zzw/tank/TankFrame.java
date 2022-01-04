@@ -25,6 +25,8 @@ public class TankFrame extends Frame {
      * 定义敌方坦克
      */
     List<Tank> enemies = new ArrayList<>();
+
+    Explode explode = new Explode(100,100,this);
     /**
      * 游戏画面的宽度
      */
@@ -96,6 +98,9 @@ public class TankFrame extends Frame {
                 bullets.get(i).collideWith(enemies.get(j));
             }
         }
+
+        explode.paint(g);
+
     }
 
     /**
