@@ -14,11 +14,11 @@ public class Tank {
     /**
      * 坦克的宽度
      */
-    public static final int WIDTH = ResourceMgr.tankD.getWidth();
+    public static final int WIDTH = ResourceMgr.goodTankU.getWidth();
     /**
      * 坦克的高度
      */
-    public static final int HEIGHT = ResourceMgr.tankD.getHeight();
+    public static final int HEIGHT = ResourceMgr.goodTankU.getHeight();
     /**
      * 用于生成随机数
      */
@@ -70,19 +70,16 @@ public class Tank {
         }
         switch (dir) {
             case LEFT:
-                g.drawImage(ResourceMgr.tankL,x,y,null);
+                g.drawImage(ResourceMgr.goodTankL,x,y,null);
                 break;
             case RIGHT:
-                g.drawImage(ResourceMgr.tankR,x,y,null);
+                g.drawImage(ResourceMgr.goodTankR,x,y,null);
                 break;
             case UP:
-                g.drawImage(ResourceMgr.tankU,x,y,null);
+                g.drawImage(ResourceMgr.goodTankU,x,y,null);
                 break;
             case DOWN:
-                g.drawImage(ResourceMgr.tankD,x,y,null);
-                break;
-            default:
-                g.drawImage(ResourceMgr.tankD,x,y,null);
+                g.drawImage(ResourceMgr.goodTankD,x,y,null);
                 break;
         }
         /**
@@ -111,9 +108,21 @@ public class Tank {
             default:
                 break;
         }
-        if (random.nextInt(10) > 8){
+        //防止自己的主战坦克随机发射子弹
+        if (this.group == Group.BAD&&(random.nextInt(100) > 95)){
             this.fire();
         }
+        if (this.group == Group.BAD&&(random.nextInt(100) > 95)){
+            randomDir();
+        }
+    }
+
+    /**
+     * 随机移动方向
+     */
+    private void randomDir() {
+
+        this.dir = Dir.values()[random.nextInt(4)];
     }
 
     /**

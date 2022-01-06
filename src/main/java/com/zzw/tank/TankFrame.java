@@ -25,8 +25,10 @@ public class TankFrame extends Frame {
      * 定义敌方坦克
      */
     List<Tank> enemies = new ArrayList<>();
-
-    Explode explode = new Explode(100,100,this);
+    /**
+     * 定义爆炸
+     */
+    List<Explode> explodes = new ArrayList<>();
     /**
      * 游戏画面的宽度
      */
@@ -82,6 +84,7 @@ public class TankFrame extends Frame {
         g.setColor(Color.WHITE);
         g.drawString("子弹的数量：" + bullets.size(),10,60);
         g.drawString("敌人的数量：" + enemies.size(),10,80);
+        g.drawString("爆炸的数量：" + explodes.size(), 10, 100);
         g.setColor(c);
         //绘制坦克
         myTank.paint(g);
@@ -93,13 +96,16 @@ public class TankFrame extends Frame {
         for (int i = 0; i < enemies.size();i++) {
             enemies.get(i).paint(g);
         }
+
+        for (int i = 0; i < explodes.size(); i++) {
+            explodes.get(i).paint(g);
+        }
+
         for (int i = 0; i < bullets.size();i++) {
             for (int j = 0; j < enemies.size();j++) {
                 bullets.get(i).collideWith(enemies.get(j));
             }
         }
-
-        explode.paint(g);
 
     }
 

@@ -11,9 +11,9 @@ import java.io.IOException;
  */
 public class ResourceMgr {
     /**
-     * 坦克的图片
+     * 主战坦克的图片
      */
-    public static BufferedImage tankL, tankR, tankU, tankD;
+    public static BufferedImage goodTankL, goodTankU, goodTankR, goodTankD;
     /**
      * 子弹的图片
      */
@@ -27,15 +27,15 @@ public class ResourceMgr {
     static {
         try {
             //加载坦克图片
-            tankL = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankL.gif"));
-            tankR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankR.gif"));
-            tankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankU.gif"));
-            tankD = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankD.gif"));
+            goodTankU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/GoodTank1.png"));
+            goodTankL = ImageUtil.rotateImage(goodTankU, -90);
+            goodTankR = ImageUtil.rotateImage(goodTankU, 90);
+            goodTankD = ImageUtil.rotateImage(goodTankU, 180);
             //加载子弹图片
-            bulletL = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletL.gif"));
-            bulletR = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletR.gif"));
-            bulletU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletU.gif"));
-            bulletD = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletD.gif"));
+            bulletU = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/bulletU.png"));
+            bulletL = ImageUtil.rotateImage(bulletU, -90);
+            bulletR = ImageUtil.rotateImage(bulletU, 90);
+            bulletD = ImageUtil.rotateImage(bulletU, 180);
             //加载爆炸图片
             for(int i=0; i<16; i++){
                 explodes[i] = ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/e" + (i+1) + ".gif"));
